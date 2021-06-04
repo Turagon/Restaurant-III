@@ -1,0 +1,10 @@
+<div class="addRestaurant">
+  <label for="new-name" class="new-restaurant"><i class="far fa-list-alt"></i>推薦餐廳</label>
+  <form action="/restaurant/addSubmit" class="new" method="POST">
+    {{>addForm}}
+    <div class="add-btn mt-4 d-flex justify-content-center">
+      <button class="add submit" type="submit">新增</button>
+      <button class="back"><a href="/">回首頁</a></button>
+    </div>
+  </form>
+</div>

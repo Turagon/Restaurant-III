@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/restaurants', {
+mongoose.connect('mongodb://localhost/restaurantdatas', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

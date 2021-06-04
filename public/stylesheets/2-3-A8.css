@@ -1,0 +1,345 @@
+/* basic setting */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 95%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* main.hbs */
+.banner-box {
+  margin: 0;
+}
+
+h4.banner-topic {
+  width: 100%;
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  color: aliceblue;
+  background-color: olivedrab;
+}
+
+header.lower-banner {
+  width: 100%;
+  height: 200px;
+  background-image: url(https://www.gowinglife.com/wp-content/uploads/2020/09/food.jpg);
+  text-align: center;
+  line-height: 180px;
+}
+
+.lower-banner-topic {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.lower-banner-topic h1 {
+  line-height: 200px;
+}
+
+.lower-banner-topic i {
+  margin-right: 10px;
+}
+
+div.add-new {
+  position: fixed;
+  top: 240px;
+  left: 95%;
+  width: 28px;
+  height: 100px;
+  padding: 3px;
+  text-align: center;
+  background-color: olivedrab;
+  border-radius: 4px;
+}
+
+a.add-new {
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: bolder;
+}
+
+/* searchBar.hbs */
+.index-search {
+  width: 50%;
+  height: 40px;
+  position: absolute;
+  top: 220px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border-radius: 20px;
+  border: 3px chocolate solid;
+  padding: 0 10px;
+}
+
+.index-search-form {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100%;
+}
+
+.search-left {
+  border-right: 2px chocolate solid;
+  display: flex;
+  align-items: center;
+}
+
+.search-left input {
+  width: 85%;
+  height: 90%;
+  margin-right: 10px;
+  padding-left: 5px;
+  border: none;
+  border-radius: 10px;
+}
+
+.search-left i, .search-right i {
+  color: chocolate;
+}
+
+.search-right {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-location {
+  width: 60%;
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.search-location select {
+  border: none;
+  width: 100%;
+  height: 90%;
+}
+
+.form-control {
+  width: 60%;
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+}
+
+.search-btn {
+  width: 20%;
+  height: 90%;
+  border-radius: 18px;
+  border: none;
+  background-color: olivedrab;
+  color: aliceblue;
+  text-align: center;
+  transform: translateX(10%);
+}
+
+.search-btn i {
+  color: aliceblue;
+}
+
+/* index.hbs */
+.cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 24.5% 24.5% 24.5% 24.5%;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.index-card {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 2px;
+}
+
+.image {
+  width: 100%;
+  height: 240px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.detail-content {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.detail-content-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 3px;
+}
+
+.detail-content-info span {
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+.detail-content-info i {
+  width: 15px;
+  height: 12px;
+  margin-right: 3px;
+}
+
+.detail-content-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 3px;
+}
+
+.detail-content-btn a {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 3px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 12px;
+  color: aliceblue;
+}
+
+.detail-content-btn i {
+  width: 14px;
+  height: 12px;
+  margin-right: 3px;
+}
+
+.shop-detail {
+  background-color: rgb(21,87,153);
+}
+
+.shop-edit {
+  background-color: rgb(21,153,87);
+}
+
+.shop-delete {
+  background-color: rgb(203,45,62);
+}
+
+/* searchResult.hbs */
+.noResult {
+  margin: 30px auto;
+  color: lightpink;
+  text-align: center;
+}
+
+/* 新增頁的css */
+.addRestaurant {
+  width: 100%;
+  margin: 20px auto;
+}
+
+.add-btn button{
+  width: 12%;
+  margin: 0 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+}
+
+.add-btn button.add {
+  color: aliceblue;
+  background-color: dodgerblue;
+}
+
+.add-btn button.back {
+  background-color: firebrick;
+}
+
+button.back a {
+  color: aliceblue;
+  text-decoration: none;
+}
+
+form.new div {
+  width: 100%;
+  margin: 0;
+}
+
+.addRestaurant i {
+  margin-right: 5px;
+}
+
+.addRestaurant input, .addRestaurant textarea, .addRestaurant select {
+  border: 2px solid lightsteelblue;
+  width: 100%;
+}
+
+small.invalid-feedback {
+  margin-top: 0;
+}
+
+.new-restaurant {
+  font-size: 25px;
+}
+
+/* needConfirmAgain.hbs */
+.add-confirm h5 {
+  margin: 15px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.confirm-area {
+  display: grid;
+  grid-template-columns: 49% 49%;
+  justify-content: space-between;
+}
+
+.confirm-data {
+  width: 100%;
+}
+
+.confirm-data form div {
+  width: 100%;
+  margin: 0 0;
+}
+
+.confirm-data form div input, .confirm-data form div textarea, .confirm-data form div select {
+  border: 2px solid lightsteelblue;
+  width: 90%;
+}
+
+.confirm-cards {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  justify-content: space-between;
+}
+
+.add-sub-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-sub-container button {
+  display: inline-block;
+  width: 20%;
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: bolder;
+  margin: 5px 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.add-confirm-btn {
+  background-color: darkgreen;
+}
+
+.add-deny {
+  background-color: red;
+}

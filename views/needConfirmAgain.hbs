@@ -1,0 +1,19 @@
+<div class="add-confirm">
+  <h5>您提供的餐廳似乎有重複 請幫我們確認一下</h5>
+  <div class="confirm-area">
+    <div class="confirm-data">
+      <form action="/restaurant/confirmed" method="POST">
+        {{>addForm}}
+        <div class="add-sub-container">
+          <button class="add-confirm-btn" href="/restaurant/confirmed?_method=POST">沒有重複 送出</button>
+          <button class="add-deny" href="/">重複了 回首頁</button>
+        </div>
+      </form>
+    </div> 
+    <div class="confirm-cards row">
+      {{#each restaurants}}
+      {{>card}}
+      {{/each}}
+    </div>
+  </div>
+</div>
