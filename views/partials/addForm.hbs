@@ -56,13 +56,8 @@
   <div class="new-rating form-group row mt-2">
     <label class="col-form-label" for="rating"><i class="fas fa-star-half-alt"></i>評分</label>
     <div class="new-rating-sub input-column">
-      <select class="form-control" id="rating" name="rating" {{#if restaurant.rating}} value="{{restaurant.rating}}" {{/if}}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+      <input type="text" class="form-control" id="rating" name="rating" max="5" min="0" aria-describedby="help"
+        placeholder="評分範圍  0 ~ 5" {{#if restaurant.rating}} value="{{restaurant.rating}}" {{/if}}>
     </div>
   </div>
   <div class="new-description row mt-2">
