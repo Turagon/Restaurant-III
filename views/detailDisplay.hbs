@@ -1,0 +1,31 @@
+<div class="all-details">
+  <div class="details">
+    <div class="detail-body">
+      {{#each (first restaurants)}}
+        <div class="detail-image" style="background-image: url({{this.image}});"></div>
+        <div class="detail-info">
+          <span class="shop-name"><i class="fas fa-utensils"></i>{{this.name}}</span>
+          <span class="shop-name-en"><i class="fas fa-signature"></i>{{this.name_en}}</span>
+          <span class="shop-category"><i class="far fa-bookmark"></i>{{this.category}}</span>
+          <span class="shop-phone"><i class="fas fa-phone"></i>{{this.phone}}</span>
+          <span class="shop-location"><i class="fas fa-map-marker-alt"></i>{{this.location}}</span>
+          <span class="shop-rating"><i class="fas fa-star-half-alt"></i>{{this.rating}}</span>
+          <p class="shop-description"><i class="fas fa-info-circle"></i>{{this.description}}</p>
+          <div class="btn-box">
+            <a class="back-to-home" href="/">回首頁</a>
+            <a href="/restaurant/edit/{{this._id}}" class="shop-edit"><i class="fas fa-edit"></i>編輯</a>
+            <form action="/restaurant/delete/{{this._id}}?_method=DELETE" method="post">
+              <button type="submit" class="shop-delete"><i class="fas fa-trash-alt"></i>刪除</button>
+            </form>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="similar-list">
+    <h5 class="relative-list">同區域推薦餐廳</h5>
+    {{#each (last restaurants)}}
+    {{>card}}
+    {{/each}}
+  </div>
+</div>

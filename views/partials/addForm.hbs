@@ -2,7 +2,7 @@
     <label for="new-name" class="select-label col-form-label"><i class="fas fa-utensils"></i>餐廳名稱</label>
     <div class="new-Name-sub input-column">
       <input type="text" class="form-control" id="new-name" name="name" maxlength="20" aria-describedby="help"
-        placeholder="必填 長度不可超過20個字" {{#if data.name}} value="{{data.name}}" {{/if}} required>
+        placeholder="必填 長度不可超過20個字" {{#if restaurant.name}} value="{{restaurant.name}}" {{/if}} required>
       <small id="help" class="invalid-feedback">此欄位不可以是空白</small>
     </div>
   </div>
@@ -10,14 +10,14 @@
     <label for="new-enname" class="select-label col-form-label"><i class="fab fa-amilia"></i>餐廳英文名稱</label>
     <div class="new-enName-sub input-column">
       <input type="text" class="form-control" id="new-enname" name="name_en" maxlength="30" aria-describedby="help"
-        placeholder="長度不可超過30個字" {{#if data.name_en}} value="{{data.name_en}}" {{/if}}>
+        placeholder="長度不可超過30個字" {{#if restaurant.name_en}} value="{{restaurant.name_en}}" {{/if}}>
     </div>
   </div>
   <div class="new-category form-group row mt-2">
     <label class="col-form-label" for="category"><i class="far fa-folder"></i>分類</label>
     <div class="new-category-sub input-column">
       <input list="categories" class="form-control" name="category" id="category" placeholder="必填..若選項沒有 可自行輸入"
-      {{#if data.category}} value="{{data.category}}" {{/if}}  required>
+      {{#if restaurant.category}} value="{{restaurant.category}}" {{/if}}  required>
       <small id="help" class="invalid-feedback">此欄位不可以是空白</small>
       <datalist id="categories">
         <option>台式料理</option>
@@ -42,7 +42,7 @@
     <label for="new-address" class="select-label col-form-label"><i class="fas fa-map-marker-alt"></i>餐廳地址</label>
     <div class="new-address-sub input-column">
       <input type="text" class="form-control" id="new-address" name="location" maxlength="100" aria-describedby="help"
-        placeholder="必填 長度不可超過100個字" {{#if data.location}} value="{{data.location}}" {{/if}} required>
+        placeholder="必填 長度不可超過100個字" {{#if restaurant.location}} value="{{restaurant.location}}" {{/if}} required>
       <small id="help" class="invalid-feedback">此欄位不可以是空白</small>
     </div>
   </div>
@@ -50,13 +50,13 @@
     <label for="new-phone" class="select-label col-form-label"><i class="fas fa-phone"></i>餐廳電話</label>
     <div class="new-phone-sub input-column">
       <input type="text" class="form-control" id="new-phone" name="phone" maxlength="10" aria-describedby="help"
-      placeholder="長度不可超過10個字" {{#if data.phone}} value="{{data.phone}}" {{/if}}>
+      placeholder="長度不可超過10個字" {{#if restaurant.phone}} value="{{restaurant.phone}}" {{/if}}>
     </div>
   </div>
   <div class="new-rating form-group row mt-2">
     <label class="col-form-label" for="rating"><i class="fas fa-star-half-alt"></i>評分</label>
     <div class="new-rating-sub input-column">
-      <select class="form-control" id="rating" name="rating" {{#if data.rating}} value="{{data.rating}}" {{/if}}>
+      <select class="form-control" id="rating" name="rating" {{#if restaurant.rating}} value="{{restaurant.rating}}" {{/if}}>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -69,13 +69,13 @@
     <label class="col-form-label" for="new-description"><i class="far fa-comment-alt"></i>餐廳介紹</label>
     <div class="new-description-sub input-column">
       <textarea class="form-control" id="new-description" name="description" maxlength="500" rows="3"
-        placeholder="長度不可超過500個字">{{#if data.description}} value="{{data.description}}" {{/if}}</textarea>
+        placeholder="長度不可超過500個字">{{#if restaurant.description}} {{restaurant.description}}" {{/if}}</textarea>
     </div>
   </div>
   <div class="new-photo form-group row mt-2">
     <label for="photo-link" class="select-label col-form-label"><i class="far fa-images"></i>照片連結</label>
     <div class="new-photo-sub input-column">
       <input type="text" class="form-control" id="photo-link" name="image" maxlength="120" aria-describedby="help"
-      placeholder="請輸入照片連結網址" {{#if data.image}} value="{{data.image}}" {{/if}}>
+      placeholder="請輸入照片連結網址" {{#if restaurant.image}} value="{{restaurant.image}}" {{/if}}>
     </div>
   </div>

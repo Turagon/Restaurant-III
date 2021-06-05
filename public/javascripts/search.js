@@ -1,13 +1,11 @@
-function search (searchValue, searchRegion, ...restaurants) {
+function search (searchValue, ...restaurants) {
   if (searchValue) {
     return restaurants.filter(item => {
-      return (item.name.includes(searchValue) || item.category.includes(searchValue)) && item.location.includes(searchRegion.slice(0, 2))
+      return (item.name.includes(searchValue) || item.category.includes(searchValue)) || item.location.includes(searchValue.slice(0, 2))
     })
   } else {
-    return restaurants.filter(item => {
-      return item.location.includes(searchRegion.slice(0, 2))
-    })
+    return restaurants
   } 
 }
 
-module.exports = {search}
+module.exports = search

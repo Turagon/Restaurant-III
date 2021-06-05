@@ -75,7 +75,7 @@ a.add-new {
   background-color: white;
   border-radius: 20px;
   border: 3px chocolate solid;
-  padding: 0 10px;
+  padding: 0 2px;
 }
 
 .index-search-form {
@@ -84,66 +84,70 @@ a.add-new {
   height: 100%;
 }
 
-.search-left {
-  border-right: 2px chocolate solid;
+.search-form {
+  height: 100%;
   display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
   align-items: center;
+}
+
+.search-form .search-left {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: olivedrab;
+  border-right: 2px solid chocolate;
+}
+
+.search-form .search-btn {
+  height: 90%;
+  width: 20%;
+  border: none;
+  border-radius: 18px;
+  background-color: cornflowerblue;
+  color: navy;
 }
 
 .search-left input {
   width: 85%;
-  height: 90%;
-  margin-right: 10px;
-  padding-left: 5px;
   border: none;
-  border-radius: 10px;
 }
 
-.search-left i, .search-right i {
-  color: chocolate;
-}
-
-.search-right {
+form.sort-form {
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.search-location {
-  width: 60%;
+.sort-right {
+  width: 75%;
   height: 100%;
-  border: none;
-  border-radius: 10px;
   display: flex;
   align-items: center;
 }
 
-.search-location select {
-  border: none;
+.sort-terms {
   width: 100%;
-  height: 90%;
-}
-
-.form-control {
-  width: 60%;
   height: 100%;
-  border: none;
-  border-radius: 10px;
 }
 
-.search-btn {
-  width: 20%;
+.sort-terms select {
+  height: 100%;
+  width: 90% !important;
+  margin-left: 15px;
+  border: none;
+}
+
+.sort-form button {
   height: 90%;
+  width: 20%;
   border-radius: 18px;
   border: none;
-  background-color: olivedrab;
-  color: aliceblue;
-  text-align: center;
-  transform: translateX(10%);
-}
-
-.search-btn i {
+  background-color: coral;
   color: aliceblue;
 }
 
@@ -164,7 +168,7 @@ a.add-new {
 
 .image {
   width: 100%;
-  height: 240px;
+  height: 180px;
   background-position: center;
   background-size: cover;
   border-radius: 8px 8px 0 0;
@@ -202,7 +206,7 @@ a.add-new {
   padding: 3px;
 }
 
-.detail-content-btn a {
+.detail-content-btn a, .detail-content-btn button {
   width: 100%;
   margin-bottom: 5px;
   padding: 3px;
@@ -212,10 +216,18 @@ a.add-new {
   color: aliceblue;
 }
 
+.detail-content-btn button {
+  border: none;
+}
+
 .detail-content-btn i {
   width: 14px;
   height: 12px;
   margin-right: 3px;
+}
+
+.detail-content-btn form button {
+  text-align: start;
 }
 
 .shop-detail {
@@ -237,7 +249,7 @@ a.add-new {
   text-align: center;
 }
 
-/* 新增頁的css */
+/* addNewRestaurant.hbs */
 .addRestaurant {
   width: 100%;
   margin: 20px auto;
@@ -342,4 +354,86 @@ small.invalid-feedback {
 
 .add-deny {
   background-color: red;
+}
+
+/* detailDisplay.hbs */
+.all-details {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 72% 27%;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.detail-body {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 59% 39%;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.detail-body .detail-image {
+  width: 100%;
+  height: 400px;
+  background-position: center;
+  background-size: cover;
+}
+
+.detail-body .detail-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detail-body .detail-info i {
+  width: 16px;
+  height: 14px;
+  margin-right: 4px;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.detail-body .detail-info a {
+  width: 30%;
+  color: aliceblue;
+  font-weight: bolder;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.back-to-home {
+  background-color: navy;
+}
+
+.btn-box form {
+  width: 30%;
+}
+
+.btn-box form button {
+  width: 100%;
+  border: none;
+  color: aliceblue;
+  background-color: red;
+  border-radius: 5px;
+}
+
+.all-details .similar-list .index-card .image {
+  width: 100%;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.similar-list .relative-list {
+  text-align: center;
+  color: chocolate;
+  font-weight: bolder;
 }

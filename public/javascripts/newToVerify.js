@@ -5,4 +5,4 @@ function verification (verifyValue, verifyCategory, ...arr) {
   })
 }
 
-module.exports = { verification }
+module.exports = verification

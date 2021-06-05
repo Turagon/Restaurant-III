@@ -1,22 +1,24 @@
 <div class="index-search">
-  <form class="index-search-form" action="/restaurant/searchResult" method="POST">
-    <div class="search-left">
-      <input type="text" maxlength="20" placeholder="請輸入餐廳名稱, 料理類型" name="searchValue">
-      <i class="fas fa-utensils"></i>
-    </div>
-    <div class="search-right">
-      <div class="search-location">
-        <select name="searchRegion">
-          <option value="台北市">台北市</option>
-          <option value="新北市">新北市</option>
-          <option value="桃園市">桃園市</option>
-          <option value="台中市">台中市</option>
-          <option value="台南市">台南市</option>
-          <option value="高雄市">高雄市</option>
-        </select>
+  <div class="index-search-form">
+    <form class="search-form" action="/restaurant/searchResult" method="POST">
+      <div class="search-left">
+        <input type="text" maxlength="20" placeholder="請輸入餐廳名稱, 料理類型" name="searchValue">
+        <i class="fas fa-utensils"></i>
       </div>
-      <i class="fas fa-map-marker-alt"></i>
       <button type="submit" class="search-btn"><i class="fas fa-search-location"></i></button>
-    </div>
-  </form>
+    </form>
+    <form class="sort-form" action="/restaurant/sort" method="POST">
+      <div class="sort-right">
+        <div class="sort-terms">
+          <select name="sort">
+            <option value="name_en">A --> Z</option>
+            <option value="name_en_reverse">Z --> A</option>
+            <option value="category">料理類型</option>
+            <option value="location">地區</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="sort-btn"><i class="fas fa-sort-alpha-down"></i></button>
+    </form>
+  </div>
 </div>

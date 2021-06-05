@@ -10,9 +10,11 @@
       <span class="shop-rating"><i class="fas fa-star-half-alt"></i>{{this.rating}}</span>
     </div>
     <div class="detail-content-btn">
-      <a href="/{{this._id}}" class="shop-detail"><i class="far fa-eye"></i>更多內容</a>
-      <a href="/{{this._id}}?_method=PUT" class="shop-edit"><i class="fas fa-edit"></i>編輯</a>
-      <a href="/?_method=DELETE" class="shop-delete"><i class="fas fa-trash-alt"></i>刪除</a>
+      <a href="/restaurant/details/{{this._id}}" class="shop-detail"><i class="far fa-eye"></i>更多內容</a>
+      <a href="/restaurant/edit/{{this._id}}" class="shop-edit"><i class="fas fa-edit"></i>編輯</a>
+      <form action="/restaurant/delete/{{this._id}}?_method=DELETE" method="post">
+        <button type="submit" class="shop-delete"><i class="fas fa-trash-alt"></i>刪除</button>
+      </form>
     </div>
   </div>
 </div>
