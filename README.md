@@ -14,13 +14,13 @@
  終端機指令cd 進入該檔案夾中 
 
  3. use npm install command to install the following package   
-    a. express
-    b. express-handlebars
-    c. just-handlebars-helpers
-    d. body-parser
-    e. mongoose
-    f. method-override    
-    使用npm install安裝上列所有套件
+    a. express  
+    b. express-handlebars  
+    c. just-handlebars-helpers  
+    d. body-parser  
+    e. mongoose  
+    f. method-override      
+    使用npm install安裝上列所有套件  
  
  4. create a database in MongoDB named restaurantdatas   
  在MongoDB建立一個名稱為restaurantdatas的資料庫

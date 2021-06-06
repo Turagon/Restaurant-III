@@ -12,9 +12,8 @@
     <div class="detail-content-btn">
       <a href="/restaurant/details/{{this._id}}" class="shop-detail"><i class="far fa-eye"></i>更多內容</a>
       <a href="/restaurant/edit/{{this._id}}" class="shop-edit"><i class="fas fa-edit"></i>編輯</a>
-      <form action="/restaurant/delete/{{this._id}}?_method=DELETE" method="post">
-        <button type="submit" class="shop-delete"><i class="fas fa-trash-alt"></i>刪除</button>
-      </form>
+      <button type="button" class="card-shop-delete" data-id="{{this._id}}"><i class="fas fa-trash-alt"></i>刪除
+      </button>
     </div>
   </div>
 </div>
