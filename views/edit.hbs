@@ -1,6 +1,6 @@
 <div class="addRestaurant">
   <label for="new-name" class="new-restaurant"><i class="fas fa-edit"></i>編輯餐廳資料</label>
-  <form action="/restaurant/{{restaurant._id}}?_method=PUT" class="edit" method="POST">
+  <form action="/restaurant/{{restaurant._id}}?_method=PUT" class="edit new" method="POST">
     {{>addForm}}
     <div class="add-btn mt-4 d-flex justify-content-center">
       <button class="add submit" type="submit">送出</button>

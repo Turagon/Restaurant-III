@@ -4,6 +4,7 @@ const restaurantData = require('../../models/restaurantData')
 const search = require('../../public/javascripts/search')
 const verification = require('../../public/javascripts/newToVerify')
 const sortTerm = require('../../public/javascripts/sortTerm')
+const findRelative = require('../../public/javascripts/findRelative')
 
 // search routing
 router.post('/', (req, res) => {
@@ -68,6 +69,15 @@ router.get('/addNew', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = req.params.id
+  restaurantData.find()
+    .lean()
+    .then(restaurants => findRelative(id, ...restaurants))
+    .then(restaurants => res.render('detailDisplay', { restaurants }))
+    .catch(error => console.error(error))
+})
+
+router.get('/edit/:id', (req, res) => {
+  const id = req.params.id
   restaurantData.findById(id)
     .lean()
     .then(restaurant => res.render('edit', {restaurant}))
@@ -89,7 +99,7 @@ router.put('/:id', (req, res) => {
     restaurant.image = data.image
     return restaurant.save()
   })
-  .then(() => res.redirect(`/${id}`))
+  .then(() => res.redirect(`/restaurant/${id}`))
   .catch(error => console.error(error))
 })
 

@@ -56,7 +56,7 @@
   <div class="new-rating form-group row mt-2">
     <label class="col-form-label" for="rating"><i class="fas fa-star-half-alt"></i>評分</label>
     <div class="new-rating-sub input-column">
-      <input type="text" class="form-control" id="rating" name="rating" max="5" min="0" aria-describedby="help"
+      <input type="number" class="form-control" id="rating" name="rating" oninput="if(value>5)value=5;if(value<0)value=0" aria-describedby="help"
         placeholder="評分範圍  0 ~ 5" {{#if restaurant.rating}} value="{{restaurant.rating}}" {{/if}}>
     </div>
   </div>
