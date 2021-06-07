@@ -20,7 +20,7 @@ function renderModal(data) {
       <h4 class="modal-head">親 善意提醒你</h4>
       <h5 class="modal-warning">這個操作會導致資料被刪除 你要繼續嗎?</h5>
       <div class="modal-btn-box">
-        <form action="/restaurant/delete/${data}?_method=DELETE" method="POST">
+        <form action="/restaurant/${data}?_method=DELETE" method="POST">
           <button type="button" class="btn btn-secondary close-modal" data-bs-dismiss="modal"><i class="fas fa-undo"></i>返回</button>
           <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>確認刪除</button>
         </form>

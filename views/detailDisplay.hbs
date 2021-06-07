@@ -13,8 +13,8 @@
           <p class="shop-description"><i class="fas fa-info-circle"></i>{{this.description}}</p>
           <div class="btn-box">
             <a class="back-to-home" href="/">回首頁</a>
-            <a href="/restaurant/edit/{{this._id}}" class="shop-edit"><i class="fas fa-edit"></i>編輯</a>
-            <form action="/restaurant/delete/{{this._id}}?_method=DELETE" method="post">
+            <a href="/restaurant/{{this._id}}" class="shop-edit"><i class="fas fa-edit"></i>編輯</a>
+            <form action="/restaurant/{{this._id}}?_method=DELETE" method="post">
               <button type="button" class="shop-delete" data-bs-toggle="modal" data-bs-target="#delete-confirm"><i
                   class="fas fa-trash-alt"></i>
                 刪除

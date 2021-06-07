@@ -3,33 +3,24 @@ const router = express.Router()
 const restaurantData = require('../../models/restaurantData')
 const search = require('../../public/javascripts/search')
 const verification = require('../../public/javascripts/newToVerify')
-const findRelative = require('../../public/javascripts/findRelative')
+const sortTerm = require('../../public/javascripts/sortTerm')
 
 // search routing
-router.post('/searchResult', (req, res) => {
-  const value = req.body
+router.post('/', (req, res) => {
+  const value = req.body.searchValue
   return restaurantData.find()
     .lean()
-    .then(restaurants => search(value.searchValue, ...restaurants))
+    .then(restaurants => search(value, ...restaurants))
     .then(restaurants => res.render('searchResult', {restaurants}))
     .catch(error => console.error(error))
 })
 
 // sort routing
 router.post('/sort', (req, res) => {
-  const value = req.body.sort
-  if (value === 'name_en_reverse') {
-    sortTerm = {name_en: -1}
-  } else if (value === 'category') {
-    sortTerm = {category: 1}
-  } else if (value === 'location') {
-    sortTerm = {location: 1}
-  } else {
-    sortTerm = {name_en: 1}
-  }
+  const term = sortTerm(req.body.sort)
   return restaurantData.find()
     .lean()
-    .sort(sortTerm)
+    .sort(term)
     .then(restaurants => res.render('index', {restaurants}))
     .catch(error => console.error(error))
 })
@@ -75,16 +66,7 @@ router.get('/addNew', (req, res) => {
   return res.render('addNewRestaurant')
 })
 
-router.get('/details/:id', (req, res) => {
-  const id = req.params.id
-  restaurantData.find()
-   .lean()
-   .then(restaurants => findRelative(id, ...restaurants))
-   .then(restaurants => res.render('detailDisplay', {restaurants}))
-   .catch(error => console.error(error))
-})
-
-router.get('/edit/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const id = req.params.id
   restaurantData.findById(id)
     .lean()
@@ -92,7 +74,7 @@ router.get('/edit/:id', (req, res) => {
     .catch(error => console.error(error))
 })
 
-router.put('/edit/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const data = req.body
   const id = req.params.id
   restaurantData.findById(id)
@@ -107,11 +89,11 @@ router.put('/edit/:id', (req, res) => {
     restaurant.image = data.image
     return restaurant.save()
   })
-  .then(() => res.redirect(`/restaurant/details/${id}`))
+  .then(() => res.redirect(`/${id}`))
   .catch(error => console.error(error))
 })
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id
   restaurantData.findById(id)
     .then(restaurant => restaurant.remove())

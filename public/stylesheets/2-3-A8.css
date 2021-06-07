@@ -151,6 +151,10 @@ form.sort-form {
   color: aliceblue;
 }
 
+select {
+  background-color: white;
+}
+
 /* index.hbs */
 .cards {
   width: 100%;
@@ -247,6 +251,10 @@ form.sort-form {
   margin: 30px auto;
   color: lightpink;
   text-align: center;
+}
+
+.detail-content-btn .shop-delete {
+  background-color: rgb(203,45,62);
 }
 
 /* addNewRestaurant.hbs */
