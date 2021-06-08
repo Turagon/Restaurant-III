@@ -2,6 +2,7 @@
   {{#if (empty restaurants)}}
   <h1 class="noResult">親! 很抱歉, 找不到您想找的餐廳, 要不在試一下吧</h1>
   {{else}}
+  {{>searchBar}}
   <div class="cards">
     {{#each restaurants}}
     <div class="index-card">

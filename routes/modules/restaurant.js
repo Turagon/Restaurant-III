@@ -8,21 +8,22 @@ const findRelative = require('../../public/javascripts/findRelative')
 
 // search routing
 router.post('/', (req, res) => {
-  const value = req.body.searchValue
+  const searchValue = req.body.searchValue
   return restaurantData.find()
     .lean()
-    .then(restaurants => search(value, ...restaurants))
-    .then(restaurants => res.render('searchResult', {restaurants}))
+    .then(restaurants => search(searchValue, ...restaurants))
+    .then(restaurants => res.render('searchResult', {searchValue, restaurants}))
     .catch(error => console.error(error))
 })
 
 // sort routing
 router.post('/sort', (req, res) => {
+  const value = req.body.sort
   const term = sortTerm(req.body.sort)
   return restaurantData.find()
     .lean()
     .sort(term)
-    .then(restaurants => res.render('index', {restaurants}))
+    .then(restaurants => res.render('index', {value, restaurants}))
     .catch(error => console.error(error))
 })
 
