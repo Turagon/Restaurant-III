@@ -1,9 +1,12 @@
 const express = require('express')
-const router = express.Router()
 const home = require('./modules/home')
+const auth = require('./modules/auth')
 const restaurant = require('./modules/restaurant')
 
-router.use('/', home)
+const router = express.Router()
+
+router.use('/', auth)
+router.use('/home', home)
 router.use('/restaurant', restaurant)
 
 module.exports = router

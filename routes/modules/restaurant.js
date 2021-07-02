@@ -59,8 +59,8 @@ router.post('/confirmed', (req, res) => {
     description: data.description,
     image: data.image
   })
-    .then(() => res.redirect('/'))
-    .catch(error => console.error(error))
+  .then(() => res.redirect('/'))
+  .catch(error => console.error(error))
 })
 
 // go to add page routing
