@@ -10,7 +10,6 @@ const passport = require('passport')
 const port = process.env.PORT || 3000
 const routes = require('./routes')
 require('./config/mongoose')
-require('./config/passport')(passport)
 
 helpers.registerHelpers(handlebars)
 
@@ -31,6 +30,7 @@ app.use(session({
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+require('./config/passport')(passport)
 
 // Connect flash
 app.use(flash())

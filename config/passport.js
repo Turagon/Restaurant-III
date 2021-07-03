@@ -1,4 +1,6 @@
 const strategy = require('passport-local').Strategy
+const fbstrategy = require('passport-facebook').Strategy
+
 const bcrypt = require('bcryptjs')
 const users = require('../models/userData')
 
@@ -21,9 +23,45 @@ const localStrategy = new strategy({ usernameField: 'email' }, (email, password,
     .catch((error) => console.log(error))
 })
 
+
+const facebookStrategy = new fbstrategy(
+  {
+    clientID: '193912692664963',
+    clientSecret: '79b17428f16dae86e96cdb6493238d92',
+    callbackURL: "http://localhost:3000/facebook/callback",
+    profileFields: ['displayName', 'email']
+  },
+  (accessToken, refreshToken, profile, cb) => {
+    const {name, email} = profile._json
+    users.findOne({email})
+    .then(user => {
+      if (!user) {
+        return cb(null, false, { message: 'Your FB account is not registered before' })
+      }
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(Math.random().toString(20).slice(9), salt, (err, hash) => {
+          if (err) throw err
+          users.create({
+            name,
+            email,
+            password: hash
+          })
+          .then(users => {
+            return cb(null, users)
+          })
+          .catch(err => {
+            return cb(null, false, { message: 'Ooops! Something wrong, please try again' })
+          })
+        })
+      })
+    })
+  }
+)
+
 // pack middleware
 function passportSet(passport) {
   passport.use(localStrategy)
+  passport.use(facebookStrategy)
 
   passport.serializeUser((user, done) => {
     done(null, user.id);

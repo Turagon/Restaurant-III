@@ -15,6 +15,17 @@ router.get('/register', forwardAuth, (req, res) => {
   res.render('register', { title: 'Authentication', layout: 'loginPage' })
 })
 
+router.get('/facebook', passport.authenticate('facebook', {
+  scope: ['email', 'public_profile']
+}))
+
+router.get('/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/home',
+  failureRedirect: '/',
+  failureFlash: true
+  })
+)
+
 router.get('/logout', (req, res) => {
   req.logout()
   res.redirect('/')
@@ -32,11 +43,8 @@ router.post('/login',
 )
 
 router.post('/register', (req, res) => {
-  const name = req.body.name
-  const email = req.body.email
-  let password = req.body.password
-  const password2 = req.body.password2
-  let errors = []
+  const {name, email, password, password2} = req.body
+  const errors = []
   if (!emailVerify(email)) {
     errors.push({ msg: 'the email format is invalid' })
   }
@@ -74,11 +82,10 @@ router.post('/register', (req, res) => {
               if (err) {
                 throw err
               }
-              password = hash
               users.create({
                 name,
                 email,
-                password
+                password: hash
               })
                 .then(users => {
                   req.flash('msg', 'Your registration is successful')
@@ -92,7 +99,5 @@ router.post('/register', (req, res) => {
       .catch(err => console.log(err))
   }
 })
-
-module.exports = router
 
 module.exports = router
