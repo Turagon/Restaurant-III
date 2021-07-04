@@ -31,7 +31,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
 
 // user logout routing
 router.get('/logout', (req, res) => {
-  const username = req.user.name ? req.user.name: 'Sir'
+  const username = req.user ? req.user.name: 'Sir'
   req.logout()
   req.flash('msg', `${username} You have successfully logout`)
   res.redirect('/')

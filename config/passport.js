@@ -26,9 +26,9 @@ const localStrategy = new strategy({ usernameField: 'email' }, (email, password,
 
 const facebookStrategy = new fbstrategy(
   {
-    clientID: '193912692664963',
-    clientSecret: '79b17428f16dae86e96cdb6493238d92',
-    callbackURL: "http://localhost:3000/facebook/callback",
+    clientID: process.env.FACEBOOK_ID,
+    clientSecret: process.env.FACEBOOK_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK,
     profileFields: ['displayName', 'email']
   },
   (accessToken, refreshToken, profile, cb) => {

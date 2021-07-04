@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
@@ -7,7 +10,7 @@ const helpers = require('just-handlebars-helpers')
 const methodOverride = require('method-override')
 const handlebars = require('handlebars')
 const passport = require('passport')
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 const routes = require('./routes')
 require('./config/mongoose')
 
@@ -22,7 +25,7 @@ app.use(methodOverride('_method'))
 
 // express-session
 app.use(session({
-  secret: 'iamrexalsotangle',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
