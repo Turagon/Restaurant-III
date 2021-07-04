@@ -7,14 +7,17 @@ const { ensureAuth, forwardAuth } = require('../../config/pageAuth')
 
 const router = express.Router()
 
+// login page routing
 router.get('/', forwardAuth, (req, res) => {
   res.render('auth', {title: 'Authentication', layout: 'loginPage'})
 })
 
+// registration page routing
 router.get('/register', forwardAuth, (req, res) => {
   res.render('register', { title: 'Authentication', layout: 'loginPage' })
 })
 
+// facebook login routing
 router.get('/facebook', passport.authenticate('facebook', {
   scope: ['email', 'public_profile']
 }))
@@ -26,9 +29,11 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
   })
 )
 
+// user logout routing
 router.get('/logout', (req, res) => {
+  const username = req.user.name ? req.user.name: 'Sir'
   req.logout()
-  req.flash('msg', 'You have successfully logout')
+  req.flash('msg', `${username} You have successfully logout`)
   res.redirect('/')
 })
 

@@ -12,7 +12,7 @@ router.use(ensureAuth)
 // search routing
 router.post('/', (req, res) => {
   const searchValue = req.body.searchValue
-  return restaurantData.find()
+  restaurantData.find()
     .lean()
     .then(restaurants => search(searchValue, ...restaurants))
     .then(restaurants => res.render('searchResult', {searchValue, restaurants}))
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 router.post('/sort', (req, res) => {
   const value = req.body.sort
   const term = sortTerm(req.body.sort)
-  return restaurantData.find()
+  restaurantData.find()
     .lean()
     .sort(term)
     .then(restaurants => res.render('index', {value, restaurants}))
@@ -40,7 +40,7 @@ router.post('/addSubmit', (req, res) => {
     .then(restaurants => verification(verifyName, verifyCategory, ...restaurants))
     .then(restaurants => {
       if (!restaurants[0]) {
-        return restaurantData.create(restaurant)
+        restaurantData.create(restaurant)
           .then(() => res.redirect('/'))
           .catch(error => console.error(error))
       } else {
@@ -49,7 +49,7 @@ router.post('/addSubmit', (req, res) => {
     })
 })
 
-// add confirmed
+// confirm add new restaurant
 router.post('/confirmAdd', (req, res) => {
   const data = req.body
   restaurantData.create({
@@ -66,11 +66,26 @@ router.post('/confirmAdd', (req, res) => {
   .catch(error => console.error(error))
 })
 
-// go to add page routing
-router.get('/addNew', (req, res) => {
-  return res.render('addNewRestaurant')
+
+// favorite page routing
+router.get('/favoriteList', (req, res) => {
+  const userId = req.user.id
+  userData.findById(userId)
+    .then(user => {
+        const favoriteList = user.favorite
+        restaurantData.find({ _id: { $in: favoriteList}})
+          .lean()
+          .then(restaurants => res.render('index', {restaurants}))
+    })
+    .catch(err => console.log(err))
 })
 
+// add new restaurant page routing
+router.get('/addNew', (req, res) => {
+  res.render('addNewRestaurant')
+})
+
+// browse restaurant detail routing
 router.get('/:id', (req, res) => {
   const id = req.params.id
   const userId = req.user.id
@@ -93,6 +108,7 @@ router.get('/:id', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// edit restaurant info routing
 router.get('/edit/:id', (req, res) => {
   const id = req.params.id
   restaurantData.findById(id)
@@ -101,6 +117,7 @@ router.get('/edit/:id', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// add restaurant to favorite routing
 router.get('/collect/:id', (req, res) => {
   const idUser = req.user.id
   const idRestaurant = req.params.id
@@ -115,13 +132,11 @@ router.get('/collect/:id', (req, res) => {
         req.flash('error', 'this item is already in your list')
       }
     })
-    .then(() => {
-      console.log(res.locals.msg)
-      res.redirect(`/restaurant/${idRestaurant}`)
-    })
+    .then(() => res.redirect(`/restaurant/${idRestaurant}`))
     .catch(err => console.log(err))
 })
 
+// remove restaurant from favorite routing
 router.get('/reverseCollect/:id', (req, res) => {
   const idUser = req.user.id
   const idRestaurant = req.params.id
@@ -137,12 +152,11 @@ router.get('/reverseCollect/:id', (req, res) => {
         req.flash('error', 'Sorry, this item is not in your list')
       }
     })
-    .then(() => {
-      return res.redirect(`/restaurant/${idRestaurant}`)
-    })
+    .then(() => res.redirect(`/restaurant/${idRestaurant}`))
     .catch(err => console.log(err))
 })
 
+// modify restaurant info routing
 router.put('/:id', (req, res) => {
   const data = req.body
   const id = req.params.id

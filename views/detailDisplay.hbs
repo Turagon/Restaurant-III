@@ -1,4 +1,16 @@
 <div class="all-details">
+  {{#if msg}}
+  <div class="alert alert-success alert-dismissible fade show add-favorite" role="alert">
+    {{msg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
+  {{#if error}}
+  <div class="alert alert-warning alert-dismissible fade show remove-favorite" role="alert">
+    <strong>Note!</strong> {{error}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {{/if}}
   <div class="details">
     <div class="detail-body">
       {{#each (first restaurants)}}

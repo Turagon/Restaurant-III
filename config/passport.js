@@ -6,7 +6,7 @@ const users = require('../models/userData')
 
 // set local strategy
 const localStrategy = new strategy({ usernameField: 'email' }, (email, password, done) => {
-  users.findOne({ email: email })
+  users.findOne({ email })
     .then(user => {
       if (!user) {
         return done(null, false, { message: 'this email is not registered' })
