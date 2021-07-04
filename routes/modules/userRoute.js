@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const restaurantData = require('../../models/restaurantData')
+const userData = require('../../models/userData')
 const search = require('../../public/javascripts/search')
 const verification = require('../../public/javascripts/newToVerify')
 const sortTerm = require('../../public/javascripts/sortTerm')
@@ -72,10 +73,23 @@ router.get('/addNew', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = req.params.id
+  const userId = req.user.id
   restaurantData.find()
     .lean()
     .then(restaurants => findRelative(id, ...restaurants))
-    .then(restaurants => res.render('detailDisplay', { restaurants }))
+    .then(restaurants => {
+      userData.findById(userId)
+        .then(user => {
+          const isFavoriteCheck = user.favorite.filter(item => item === id)
+          if (isFavoriteCheck[0]) {
+            restaurants[0][0].collected = true
+            res.render('detailDisplay', { restaurants })
+          } else {
+            restaurants[0][0].collected = false
+            res.render('detailDisplay', { restaurants })
+          }
+        })
+    })
     .catch(error => console.error(error))
 })
 
@@ -85,6 +99,48 @@ router.get('/edit/:id', (req, res) => {
     .lean()
     .then(restaurant => res.render('edit', {restaurant}))
     .catch(error => console.error(error))
+})
+
+router.get('/collect/:id', (req, res) => {
+  const idUser = req.user.id
+  const idRestaurant = req.params.id
+  userData.findById(idUser)
+    .then(user => {
+      const repeat = user.favorite.filter(item => item === idRestaurant)
+      if (!repeat.length) {
+        user.favorite.push(idRestaurant)
+        user.save({ favorite: user.favorite })
+        req.flash('msg', 'Successfully add to your list')
+      } else {
+        req.flash('error', 'this item is already in your list')
+      }
+    })
+    .then(() => {
+      console.log(res.locals.msg)
+      res.redirect(`/restaurant/${idRestaurant}`)
+    })
+    .catch(err => console.log(err))
+})
+
+router.get('/reverseCollect/:id', (req, res) => {
+  const idUser = req.user.id
+  const idRestaurant = req.params.id
+  userData.findById(idUser)
+    .then(user => {
+      const itemFuc = (item) => item === idRestaurant
+      const restaurantIndex = user.favorite.findIndex(itemFuc)
+      if (restaurantIndex !== -1) {
+        const restaurantList = user.favorite.splice(restaurantIndex, 1)
+        user.save({ favorite: restaurantList })
+        req.flash('msg', 'Successfully remove from your list')
+      } else {
+        req.flash('error', 'Sorry, this item is not in your list')
+      }
+    })
+    .then(() => {
+      return res.redirect(`/restaurant/${idRestaurant}`)
+    })
+    .catch(err => console.log(err))
 })
 
 router.put('/:id', (req, res) => {

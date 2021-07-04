@@ -1,0 +1,25 @@
+<div class="index-search">
+  <div class="index-search-form">
+    <form class="search-form" action="/guest/" method="POST">
+      <div class="search-left">
+        <input type="text" maxlength="20" placeholder="請輸入餐廳名稱, 料理類型" name="searchValue" {{#if searchValue}}
+          value="{{searchValue}}" {{/if}}>
+        <i class="fas fa-utensils"></i>
+      </div>
+      <button type="submit" class="search-btn"><i class="fas fa-search-location"></i></button>
+    </form>
+    <form class="sort-form" action="/guest/sort" method="POST">
+      <div class="sort-right">
+        <div class="sort-terms">
+          <select name="sort">
+            <option value="name_en" {{#if (eq value 'name_en' )}} selected {{/if}}>A --> Z</option>
+            <option value="name_en_reverse" {{#if (eq value 'name_en_reverse' )}} selected {{/if}}>Z --> A</option>
+            <option value="category" {{#if (eq value 'category' )}} selected {{/if}}>料理類型</option>
+            <option value="location" {{#if (eq value 'location' )}} selected {{/if}}>地區</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="sort-btn"><i class="fas fa-sort-alpha-down"></i></button>
+    </form>
+  </div>
+</div>

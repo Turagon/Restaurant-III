@@ -9,7 +9,8 @@ const restaurantSchema = new schema({
   location: { type: String, require: true },
   phone: { type: String },
   rating: { type: Number },
-  description: { type: String }
+  description: { type: String },
+  collected: {type: Boolean, default: false}
 })
 
 module.exports = mongoose.model('restaurantData', restaurantSchema)

@@ -28,6 +28,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
 
 router.get('/logout', (req, res) => {
   req.logout()
+  req.flash('msg', 'You have successfully logout')
   res.redirect('/')
 })
 
@@ -37,7 +38,6 @@ router.post('/login',
     failureFlash: true,
   }),
   (req, res) => {
-    req.flash('msg', `${req.user.name}`)
     res.redirect('/home')
   }
 )

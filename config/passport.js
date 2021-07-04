@@ -36,24 +36,25 @@ const facebookStrategy = new fbstrategy(
     users.findOne({email})
     .then(user => {
       if (!user) {
-        return cb(null, false, { message: 'Your FB account is not registered before' })
-      }
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(Math.random().toString(20).slice(9), salt, (err, hash) => {
-          if (err) throw err
-          users.create({
-            name,
-            email,
-            password: hash
-          })
-          .then(users => {
-            return cb(null, users)
-          })
-          .catch(err => {
-            return cb(null, false, { message: 'Ooops! Something wrong, please try again' })
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(Math.random().toString(20).slice(9), salt, (err, hash) => {
+            if (err) throw err
+            users.create({
+              name,
+              email,
+              password: hash
+            })
+            .then(user => {
+              return cb(null, user)
+            })
+            .catch(err => {
+              return cb(null, false, { message: 'Ooops! Something wrong, please try again' })
+            })
           })
         })
-      })
+      } else if (user) {
+        return cb(null, user)
+      }
     })
   }
 )

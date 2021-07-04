@@ -2,7 +2,17 @@
   <div class="details">
     <div class="detail-body">
       {{#each (first restaurants)}}
-        <div class="detail-image" style="background-image: url({{this.image}});"></div>
+        <div class="detail-image" style="background-image: url({{this.image}});">
+          {{#if this.collected}}
+          <a href="/restaurant/reverseCollect/{{this._id}}" class="collected-icon">
+            <i class="fas fa-heart collected-icon" data-id="{{this._id}}">已收藏</i>
+          </a>
+          {{else}}
+          <a href="/restaurant/collect/{{this._id}}" class="collect-icon">
+            <i class="fab fa-gratipay collect-icon" data-id="{{this._id}}">收藏</i>
+          </a>
+          {{/if}}
+        </div>
         <div class="detail-info">
           <span class="shop-name"><i class="fas fa-utensils"></i>{{this.name}}</span>
           <span class="shop-name-en"><i class="fas fa-signature"></i>{{this.name_en}}</span>

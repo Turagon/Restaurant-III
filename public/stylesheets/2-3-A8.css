@@ -405,6 +405,16 @@ small.invalid-feedback {
   background-size: cover;
 }
 
+.detail-image a.collect-icon {
+  margin: 0 5px;
+  color: aliceblue;
+}
+
+.detail-image a.collected-icon {
+  margin: 0 5px;
+  color: darkorchid;
+}
+
 .detail-body .detail-info {
   display: flex;
   flex-direction: column;
@@ -563,7 +573,7 @@ small.invalid-feedback {
 
 /* auth.hbs */
 .login .form-group {
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .login-img {
@@ -661,6 +671,7 @@ form.was-validated .form-control:invalid ~ .invalid {
 .alert {
   color: red;
   height: 25px;
+  margin-bottom: 5px !important;
   font-weight: bolder;
   font-size: 8px;
   padding: 0.3rem;
