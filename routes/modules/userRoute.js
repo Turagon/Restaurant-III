@@ -5,6 +5,8 @@ const search = require('../../public/javascripts/search')
 const verification = require('../../public/javascripts/newToVerify')
 const sortTerm = require('../../public/javascripts/sortTerm')
 const findRelative = require('../../public/javascripts/findRelative')
+const { ensureAuth, forwardAuth } = require('../../config/pageAuth')
+router.use(ensureAuth)
 
 // search routing
 router.post('/', (req, res) => {
@@ -47,7 +49,7 @@ router.post('/addSubmit', (req, res) => {
 })
 
 // add confirmed
-router.post('/confirmed', (req, res) => {
+router.post('/confirmAdd', (req, res) => {
   const data = req.body
   restaurantData.create({
     name: data.name,

@@ -17,12 +17,29 @@
 }
 
 h4.banner-topic {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   margin: 0;
   padding: 5px;
   text-align: center;
   color: aliceblue;
   background-color: olivedrab;
+}
+
+h4.banner-topic span {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+h4.banner-topic a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+h4.banner-topic a i {
+  margin-left: 10px;
 }
 
 header.lower-banner {
@@ -592,7 +609,7 @@ form.register label i {
 }
 
 form.login input, form.register input {
-  font-size: 10px;
+  font-size: 8px;
 }
 
 form.login small, form.register small {
@@ -637,6 +654,10 @@ form.was-validated .form-control:invalid ~ .invalid {
   font-weight: bolder;
 }
 
+.login-button-box a.guest {
+  color: blueviolet;
+}
+
 .alert {
   color: red;
   height: 25px;
@@ -655,3 +676,17 @@ form.was-validated .form-control:invalid ~ .invalid {
 .alert.alert-success {
   color: green;
 }
+
+.facebook {
+  width: 55%;
+  background-color: rgb(24, 118, 242);
+  color: aliceblue;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.facebook i {
+  margin: 0 5px;
+}
+
+

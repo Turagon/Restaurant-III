@@ -7,9 +7,11 @@ function passwordVerify(password) {
   const number = '0123456789'
   const lowerCase = 'abcdefghijklmnopqrstuvwxyz'
   const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const checkBase = (number + lowerCase + upperCase).split("")
-  const checkResult = password.split("").filter(item => checkBase.includes(item))
-  if (checkResult.length === password.length && password.length >= 6 && password.length <= 12) {
+  const pass = password.split("")
+  const numberCheck = pass.filter(item => number.includes(item))
+  const lowerCaseCheck = pass.filter(item => lowerCase.includes(item))
+  const upperCaseCheck = pass.filter(item => upperCase.includes(item))
+  if (numberCheck.length && lowerCaseCheck.length && upperCaseCheck.length && password.length >= 6 && password.length <= 12) {
     return true
   } else {
     return false
