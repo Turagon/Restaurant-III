@@ -12,7 +12,8 @@ db.once('open', () => {
       location: i.location,
       phone: i.phone,
       rating: i.rating,
-      description: i.description
+      description: i.description,
+      collected: false
     })
   }
   console.log('done')
