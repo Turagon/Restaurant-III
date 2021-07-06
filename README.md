@@ -5,6 +5,11 @@
  2. 新增餐廳具有重複資訊檢查確認功能
  3. 餐廳詳細資訊頁面新增同地區推薦餐廳欄位
  4. 首頁增加搜尋以及排序功能
+ 5. 新增登入登出功能 並可以選擇使用臉書帳號登入    
+ 6. 增加訪客路由 訪客可以不登入就進入網站 並且限制訪客的功能以及呈現的畫面     
+ 7. 增加我的清單 可以管理自己建立的餐廳內容 包括編輯以及刪除     
+ 8. 非餐廳擁有者無權編輯或刪除餐廳     
+ 9. 增加我的收藏清單     
 
 ### Installation & Execution 安裝與設定
  1. git clone from https://github.com/Turagon/Restaurant-III.git to the local folder in    your PC.    
@@ -19,7 +24,11 @@
     c. just-handlebars-helpers  
     d. body-parser  
     e. mongoose  
-    f. method-override      
+    f. method-override
+    g. passport & passport-local    
+    h. express-session     
+    i. connect-flash       
+    j. bcryptjs              
     使用npm install安裝上列所有套件  
  
  4. create a database in MongoDB named restaurantdatas   

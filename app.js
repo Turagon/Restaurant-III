@@ -31,9 +31,9 @@ app.use(session({
 }))
 
 // Passport middleware
+require('./config/passport')(passport)
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport)
 
 // Connect flash
 app.use(flash())
