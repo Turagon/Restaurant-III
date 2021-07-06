@@ -33,6 +33,7 @@ router.post('/sort', (req, res) => {
 // add form submit & verify
 router.post('/addSubmit', (req, res) => {
   const restaurant = req.body
+  restaurant.userId = req.user._id
   const verifyName = restaurant.name
   const verifyCategory = restaurant.category
   restaurantData.find()
@@ -52,6 +53,7 @@ router.post('/addSubmit', (req, res) => {
 // confirm add new restaurant
 router.post('/confirmAdd', (req, res) => {
   const data = req.body
+  data.userId = req.user._id
   restaurantData.create({
     name: data.name,
     name_en: data.name_en,
@@ -60,7 +62,8 @@ router.post('/confirmAdd', (req, res) => {
     phone: data.phone,
     rating: data.rating,
     description: data.description,
-    image: data.image
+    image: data.image,
+    userId: data.userId
   })
   .then(() => res.redirect('/'))
   .catch(error => console.error(error))
@@ -83,6 +86,17 @@ router.get('/favoriteList', (req, res) => {
 // add new restaurant page routing
 router.get('/addNew', (req, res) => {
   res.render('addNewRestaurant')
+})
+
+
+// access own list routing
+router.get('/ownList', (req, res) => {
+  const userId = req.user._id
+  restaurantData.find({ userId })
+    .lean()
+    .sort({ _id: 'asc' })
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(err => console.log(err))
 })
 
 // browse restaurant detail routing
@@ -110,10 +124,18 @@ router.get('/:id', (req, res) => {
 
 // edit restaurant info routing
 router.get('/edit/:id', (req, res) => {
-  const id = req.params.id
-  restaurantData.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+  restaurantData.findOne({ _id, userId })
     .lean()
-    .then(restaurant => res.render('edit', {restaurant}))
+    .then(restaurant => {
+      if (restaurant) {
+        res.render('edit', { restaurant })
+      } else {
+        req.flash('error', 'Only the restaurant owner can do this operation')
+        res.redirect(`/restaurant/${_id}`)
+      }
+    })
     .catch(error => console.error(error))
 })
 
@@ -159,28 +181,43 @@ router.get('/reverseCollect/:id', (req, res) => {
 // modify restaurant info routing
 router.put('/:id', (req, res) => {
   const data = req.body
-  const id = req.params.id
-  restaurantData.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+  restaurantData.findOne({ _id, userId})
   .then(restaurant => {
-    restaurant.name = data.name
-    restaurant.name_en = data.name_en
-    restaurant.category = data.category
-    restaurant.location = data.location
-    restaurant.phone = data.phone
-    restaurant.rating = data.rating
-    restaurant.description = data.description
-    restaurant.image = data.image
-    return restaurant.save()
+    if (restaurant) {
+      restaurant.name = data.name
+      restaurant.name_en = data.name_en
+      restaurant.category = data.category
+      restaurant.location = data.location
+      restaurant.phone = data.phone
+      restaurant.rating = data.rating
+      restaurant.description = data.description
+      restaurant.image = data.image
+      return restaurant.save()
+    } else {
+      req.flash('error', 'Only the restaurant owner can do this operation')
+      res.redirect(`/restaurant/${_id}`)
+    }
   })
-  .then(() => res.redirect(`/restaurant/${id}`))
+  .then(() => res.redirect(`/restaurant/${_id}`))
   .catch(error => console.error(error))
 })
 
+// delete restaurant routing
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  restaurantData.findById(id)
-    .then(restaurant => restaurant.remove())
-    .then(() => res.redirect('/'))
+  const _id = req.params.id
+  const userId = req.user._id
+  restaurantData.findOne({_id, userId})
+    .then(restaurant => {
+      if (restaurant) {
+        restaurant.remove()
+        return res.redirect('/home')
+      } else {
+        req.flash('error', 'Only the restaurant owner can do this operation')
+        return res.redirect(`/restaurant/${_id}`)
+      }
+    })
     .catch(error => console.error(error))
 })
 

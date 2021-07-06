@@ -10,7 +10,13 @@ const restaurantSchema = new schema({
   phone: { type: String },
   rating: { type: Number },
   description: { type: String },
-  collected: {type: Boolean, default: false}
+  collected: {type: Boolean, default: false},
+  userId: {
+    type: schema.Types.ObjectId,
+    ref: 'users',
+    index: true,
+    required: true
+  }
 })
 
 module.exports = mongoose.model('restaurantData', restaurantSchema)

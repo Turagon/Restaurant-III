@@ -402,7 +402,7 @@ small.invalid-feedback {
   transform: translateX(-50%);
   width: 40%;
   height: 40px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .all-details .add-favorite button, .all-details .remove-favorite button {
