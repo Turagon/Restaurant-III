@@ -9,7 +9,7 @@
   <div class="new-enName form-group row mt-2">
     <label for="new-enname" class="select-label col-form-label"><i class="fab fa-amilia"></i>餐廳英文名稱</label>
     <div class="new-enName-sub input-column">
-      <input type="text" class="form-control" id="new-enname" name="name_en" maxlength="30" aria-describedby="help"
+      <input type="text" class="form-control" id="new-enname" name="name_en" pattern="[A-z0-9]{1,30}"  aria-describedby="help"
         placeholder="長度不可超過30個字" {{#if restaurant.name_en}} value="{{restaurant.name_en}}" {{/if}}>
     </div>
   </div>
@@ -49,7 +49,7 @@
   <div class="new-phone form-group row mt-2">
     <label for="new-phone" class="select-label col-form-label"><i class="fas fa-phone"></i>餐廳電話</label>
     <div class="new-phone-sub input-column">
-      <input type="text" class="form-control" id="new-phone" name="phone" maxlength="10" aria-describedby="help"
+      <input type="number" class="form-control" id="new-phone" name="phone" maxlength="10" aria-describedby="help"
       placeholder="長度不可超過10個字" {{#if restaurant.phone}} value="{{restaurant.phone}}" {{/if}}>
     </div>
   </div>

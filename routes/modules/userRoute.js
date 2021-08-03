@@ -54,17 +54,7 @@ router.post('/addSubmit', (req, res) => {
 router.post('/confirmAdd', (req, res) => {
   const data = req.body
   data.userId = req.user._id
-  restaurantData.create({
-    name: data.name,
-    name_en: data.name_en,
-    category: data.category,
-    location: data.location,
-    phone: data.phone,
-    rating: data.rating,
-    description: data.description,
-    image: data.image,
-    userId: data.userId
-  })
+  restaurantData.create(data)
   .then(() => res.redirect('/'))
   .catch(error => console.error(error))
 })

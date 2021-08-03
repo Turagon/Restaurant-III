@@ -9,13 +9,16 @@
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <script src="/javascripts/formValidator.js" defer></script>
   <script src="/javascripts/modal.js" defer></script>
-  <link rel="stylesheet" href="/stylesheets/2-3-A8.css">
+  <link rel="stylesheet" href="/stylesheets/main.css">
   <title>美食地圖</title>
 </head>
 <body>
   <div class="container">
     <div class="banner-box">
       <h4 class="banner-topic">
+        {{#if isAuthenticated}}
+        <a href="/home" class="homepage-link">回首頁</a>
+        {{/if}}
         <span>通往美食天堂的地圖</span>
         <a href="/restaurant/ownList">我的清單
           <i class="far fa-list-alt"></i>

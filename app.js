@@ -38,6 +38,7 @@ app.use(passport.session());
 // Connect flash
 app.use(flash())
 app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.msg = req.flash('msg')
   res.locals.error = req.flash('error')
   next()

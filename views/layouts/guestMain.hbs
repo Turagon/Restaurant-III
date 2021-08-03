@@ -15,7 +15,13 @@
 <body>
   <div class="container">
     <div class="banner-box">
-      <h4 class="banner-topic"><span>通往美食天堂的地圖</span><a href="/" class="guest-login-link"><i class="fas fa-sign-in-alt"></i>登入</a></h4>
+      <h4 class="banner-topic">
+        {{#if isAuthenticated}}
+        {{else}}
+        <a href="/guest" class="homepage-link">回首頁</a>
+        {{/if}}
+        <span>通往美食天堂的地圖</span>
+        <a href="/" class="guest-login-link"><i class="fas fa-sign-in-alt"></i>登入</a></h4>
     </div>
     <header class="lower-banner">
       <a class="lower-banner-topic" href="/guest">
