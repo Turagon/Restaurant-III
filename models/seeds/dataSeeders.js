@@ -23,42 +23,15 @@ db.once('open', () => {
           for (let i of seedData) {
             if (userName === 'user1' && Number(i.id) <= 3) {
               restaurantData.create({
-                name: i.name,
-                name_en: i.name_en,
-                category: i.category,
-                image: i.image,
-                location: i.location,
-                phone: i.phone,
-                rating: i.rating,
-                description: i.description,
-                collected: false,
-                userId: refId
+                ...i, userId: refId
               })
             } else if (userName === 'user2' && Number(i.id) > 3 && Number(i.id) <= 6) {
               restaurantData.create({
-                name: i.name,
-                name_en: i.name_en,
-                category: i.category,
-                image: i.image,
-                location: i.location,
-                phone: i.phone,
-                rating: i.rating,
-                description: i.description,
-                collected: false,
-                userId: refId
+                ...i, userId: refId
               })
             } else if (userName === 'user3' && Number(i.id) > 6) {
               restaurantData.create({
-                name: i.name,
-                name_en: i.name_en,
-                category: i.category,
-                image: i.image,
-                location: i.location,
-                phone: i.phone,
-                rating: i.rating,
-                description: i.description,
-                collected: false,
-                userId: refId
+                ...i, userId: refId
               })
             }
           }
