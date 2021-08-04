@@ -48,11 +48,6 @@ header.lower-banner {
   margin-right: 10px;
 }
 
-h4.banner-topic span {
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
 h4.banner-topic a {
   margin-right: 10px;
   text-decoration: none;
